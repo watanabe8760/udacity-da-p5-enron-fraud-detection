@@ -1,4 +1,18 @@
 """
+[Confirmation] Feature importance
+"""
+from sklearn.feature_selection import SelectKBest
+kbest = SelectKBest(f_classif, k='all')
+kbest.fit(Imputer(strategy='median').fit_transform(df[F_ALL_NEW]), df['poi'])
+features = [(f, round(s, 3), round(p, 4))
+            for f, s, p in zip(F_ALL_NEW, kbest.scores_, kbest.pvalues_)]
+features = DataFrame.from_records(features, index='feature',
+                                  columns=['feature', 'score', 'pvalue'])
+features.sort_values(by='score', ascending=False, inplace=True)
+print features
+
+
+"""
 [Confirmation] Which features are selected by p-values based on FPR test?
 """
 fpr = SelectFpr(f_classif, alpha=0.05)

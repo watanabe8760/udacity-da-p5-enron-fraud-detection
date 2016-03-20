@@ -171,6 +171,42 @@ Imputation by median was applied to all the email features in all paterns. The r
 During the training grid search was performed to find the best parameters for each model through cross validation.
 
 
+### 6. Feature Importance
+
+To quickly have a sense about what features contribute to the models, the table below shows importance scores (F-values) and P-values. These were computed based on the entire data set. (See the work in 15_feature_review.py.) 
+
+```
+feature                         score  pvalue
+
+other                          17.451  0.0001
+sent_to_poi_ratio              16.023  0.0001
+expenses                       13.371  0.0004
+bonus                          11.766  0.0008
+salary                          9.510  0.0025
+deferred_income                 7.707  0.0062
+from_poi_to_this_person         7.488  0.0070
+total_payments                  7.020  0.0090
+from_this_person_to_poi         6.993  0.0091
+shared_receipt_with_poi_ratio   6.638  0.0110
+total_stock_value               6.191  0.0140
+restricted_stock                5.908  0.0163
+shared_receipt_with_poi         5.678  0.0185
+long_term_incentive             4.939  0.0278
+to_messages                     3.067  0.0821
+restricted_stock_deferred       2.737  0.1002
+director_fees                   2.392  0.1242
+loan_advances                   2.063  0.1531
+recieved_from_poi_ratio         1.888  0.1716
+exercised_stock_options         0.108  0.7429
+from_messages                   0.006  0.9362
+deferral_payments               0.000  0.9884
+```
+
+Note, since I used cross validation in the actual training process, the score and p-value in every training set would be different from the above depending on which part of data is held out as validation set. So the table above just provides the general idea.
+
+A good news is that two of engineered features (*_ratio) are working very well as expected.
+
+
 ## 6. Summary of Result
 
 The following table shows __F1 score__ of the best model in each pattern. 
