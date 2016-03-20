@@ -1,0 +1,273 @@
+
+[06_naive_bayes.py]
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('gaussiannb', GaussianNB())])
+               mean        std
+f1         0.373778   0.135006
+precision  0.244786  0.0960878
+recall         0.83   0.275862
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.05, score_func=<function f_classif at 0x0000000019A666D8>)), ('gaussiannb', GaussianNB())])
+               mean       std
+f1         0.387003  0.136868
+precision  0.265346  0.105332
+recall         0.78  0.285657
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=10, whiten=True)), ('gaussiannb', GaussianNB())])
+               mean       std
+f1         0.243571   0.28742
+precision  0.247667  0.319018
+recall        0.265  0.311889
+
+
+[07_logistic_regression.py]
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('logisticregression', LogisticRegression(C=0.01, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=0.5, max_iter=100,
+          multi_class='ovr', n_jobs=-1, penalty='l2', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False))])
+               mean       std
+f1         0.404162  0.169592
+precision  0.293794  0.149709
+recall        0.735  0.319805
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.05, score_func=<function f_classif at 0x0000000019A666D8>)), ('logisticregression', LogisticRegression(C=1, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=1.4, max_iter=100,
+          multi_class='ovr', n_jobs=-1, penalty='l1', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False))])
+               mean       std
+f1         0.428365  0.202319
+precision  0.320262  0.174891
+recall         0.71  0.333017
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=12, whiten=True)), ('logisticregression', LogisticRegression(C=1, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=0.6, max_iter=100,
+          multi_class='ovr', n_jobs=-1, penalty='l2', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False))])
+               mean       std
+f1         0.471986  0.194978
+precision  0.350905  0.175093
+recall         0.79  0.293087
+
+
+[08_decision_tree.py]
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('decisiontreeclassifier', DecisionTreeClassifier(class_weight='balanced', criterion='gini',
+            max_depth=None, max_features=1.0, max_leaf_nodes=None,
+            min_samples_leaf=2, min_samples_split=2,
+            min_weight_fraction_leaf=0.0, presort=True,
+            random_state=20160308, splitter='random'))])
+               mean       std
+f1         0.327302  0.284362
+precision   0.30119  0.293088
+recall        0.415  0.374533
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.09, score_func=<function f_classif at 0x0000000019A666D8>)), ('decisiontreeclassifier', DecisionTreeClassifier(class_weight='balanced', criterion='entropy',
+           ...   min_weight_fraction_leaf=0.0, presort=True,
+            random_state=20160308, splitter='best'))])
+               mean       std
+f1         0.345833  0.281313
+precision  0.338167  0.317283
+recall          0.4  0.324037
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=14, whiten=True)), ('decisiontreeclassifier', DecisionTreeClassifier(class_weight='balanced', criterion='gini',
+            max_depth=None, max_features=0.4, max_leaf_nodes=None,
+            min_samples_leaf=1, min_samples_split=3,
+            min_weight_fraction_leaf=0.0, presort=True,
+            random_state=20160308, splitter='random'))])
+               mean       std
+f1          0.25469  0.264255
+precision  0.241833  0.279071
+recall        0.305  0.323226
+
+
+[09_svm.py]
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('svc', SVC(C=1, cache_size=200, class_weight='balanced', coef0=0.0,
+  decision_function_shape='ovo', degree=3, gamma='auto', kernel='linear',
+  max_iter=-1, probability=False, random_state=20160308, shrinking=False,
+  tol=0.001, verbose=False))])
+               mean       std
+f1         0.495238  0.277868
+precision  0.460833   0.30489
+recall         0.61  0.350571
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.09, score_func=<function f_classif at 0x0000000019A666D8>)), ('svc', SVC(C=1, cache_size=200, class_weight='balanced', coef0=0.0,
+  decision_function_shape='ovo', degree=3, gamma='auto', kernel='linear',
+  max_iter=-1, probability=False, random_state=20160308, shrinking=False,
+  tol=0.001, verbose=False))])
+               mean       std
+f1         0.461565  0.222762
+precision   0.37546  0.216166
+recall         0.68  0.342929
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.07, score_func=<function f_classif at 0x0000000019A666D8>)), ('svc', SVC(C=0.1, cache_size=200, class_weight='balanced', coef0=0.0,
+  decision_function_shape='ovo', degree=2, gamma='auto', kernel='poly',
+  max_iter=-1, probability=False, random_state=20160308, shrinking=False,
+  tol=0.001, verbose=False))])
+               mean       std
+f1            0.406  0.263569
+precision  0.355333  0.263712
+recall         0.53  0.352278
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.05, score_func=<function f_classif at 0x0000000019A666D8>)), ('svc', SVC(C=0.1, cache_size=200, class_weight='balanced', coef0=0.0,
+  decision_function_shape='ovo', degree=3, gamma='auto', kernel='sigmoid',
+  max_iter=-1, probability=False, random_state=20160308, shrinking=False,
+  tol=0.001, verbose=False))])
+               mean          std
+f1         0.235294  2.77556e-17
+precision  0.133333  2.77556e-17
+recall            1            0
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=18, whiten=True)), ('svc', SVC(C=1, cache_size=200, class_weight='balanced', coef0=0.0,
+  decision_function_shape='ovo', degree=3, gamma='auto', kernel='linear',
+  max_iter=-1, probability=False, random_state=20160308, shrinking=False,
+  tol=0.001, verbose=False))])
+               mean       std
+f1         0.509762   0.21258
+precision  0.460917  0.257328
+recall        0.675  0.311247
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=12, whiten=True)), ('svc', SVC(C=100, cache_size=200, class_weight='balanced', coef0=0.1,
+  decision_function_shape='ovo', degree=3, gamma='auto', kernel='poly',
+  max_iter=-1, probability=False, random_state=20160308, shrinking=False,
+  tol=0.001, verbose=False))])
+               mean       std
+f1         0.448246  0.277344
+precision  0.440881  0.329677
+recall         0.53  0.322645
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=10, whiten=True)), ('svc', SVC(C=0.1, cache_size=200, class_weight='balanced', coef0=0.0,
+  decision_function_shape='ovo', degree=3, gamma='auto', kernel='sigmoid',
+  max_iter=-1, probability=False, random_state=20160308, shrinking=False,
+  tol=0.001, verbose=False))])
+               mean          std
+f1         0.235294  2.77556e-17
+precision  0.133333  2.77556e-17
+recall            1            0
+
+
+[10_linear_svm.py]
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('linearsvc', LinearSVC(C=0.001, class_weight='balanced', dual=True, fit_intercept=True,
+     intercept_scaling=0.5, loss='hinge', max_iter=-1, multi_class='ovr',
+     penalty='l2', random_state=20160308, tol=0.001, verbose=0))])
+          mean std
+f1           0   0
+precision    0   0
+recall       0   0
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.05, score_func=<function f_classif at 0x0000000019A666D8>)), ('linearsvc', LinearSVC(C=0.001, class_weight='balanced', dual=True, fit_intercept=True,
+     intercept_scaling=0.5, loss='hinge', max_iter=-1, multi_class='ovr',
+     penalty='l2', random_state=20160308, tol=0.001, verbose=0))])
+          mean std
+f1           0   0
+precision    0   0
+recall       0   0
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=10, whiten=True)), ('linearsvc', LinearSVC(C=0.001, class_weight='balanced', dual=True, fit_intercept=True,
+     intercept_scaling=0.5, loss='hinge', max_iter=-1, multi_class='ovr',
+     penalty='l2', random_state=20160308, tol=0.001, verbose=0))])
+          mean std
+f1           0   0
+precision    0   0
+recall       0   0
+
+
+[11_random_forest.py]
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('randomforestclassifier', RandomForestClassifier(bootstrap=True, class_weight='balanced_subsample',
+            criterion='entropy', max_depth=None, max_features='sqrt',
+            max_leaf_nodes=No...bs=-1,
+            oob_score=True, random_state=20160308, verbose=0,
+            warm_start=False))])
+               mean       std
+f1         0.322333  0.325612
+precision  0.368333  0.401591
+recall         0.32  0.335559
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.05, score_func=<function f_classif at 0x0000000019A666D8>)), ('randomforestclassifier', RandomForestClassifier(bootstrap=True, class_weight='balanced_subsample',
+      ...bs=-1,
+            oob_score=True, random_state=20160308, verbose=0,
+            warm_start=False))])
+               mean       std
+f1         0.369524  0.312839
+precision    0.4295  0.402974
+recall        0.365  0.322916
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=14, whiten=True)), ('randomforestclassifier', RandomForestClassifier(bootstrap=True, class_weight='balanced',
+            criterion='gini', max_depth=None, max_feat...bs=-1,
+            oob_score=True, random_state=20160308, verbose=0,
+            warm_start=False))])
+               mean       std
+f1         0.180667  0.281905
+precision     0.225  0.371465
+recall        0.165  0.265094
+
+
+[12_extra_trees.py]
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('extratreesclassifier', ExtraTreesClassifier(bootstrap=False, class_weight='balanced',
+           criterion='gini', max_depth=None, max_features='sqrt',
+           max_leaf_nodes=None, min_samples_leaf=3, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=30, n_jobs=-1,
+           oob_score=False, random_state=20160308, verbose=0,
+           warm_start=False))])
+               mean       std
+f1         0.514079   0.26045
+precision  0.503095   0.30633
+recall        0.605  0.333879
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.05, score_func=<function f_classif at 0x0000000019A666D8>)), ('extratreesclassifier', ExtraTreesClassifier(bootstrap=False, class_weight='balanced',
+           criterio...obs=-1,
+           oob_score=False, random_state=20160308, verbose=0,
+           warm_start=False))])
+               mean       std
+f1         0.502714  0.244193
+precision    0.4535  0.268114
+recall        0.635  0.315079
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=14, whiten=True)), ('extratreesclassifier', ExtraTreesClassifier(bootstrap=False, class_weight='balanced',
+           criterion='entropy', max_depth=None, max_featu...obs=-1,
+           oob_score=False, random_state=20160308, verbose=0,
+           warm_start=False))])
+               mean       std
+f1         0.267571  0.303074
+precision  0.291833  0.361459
+recall        0.275  0.311247
+
+
+[13_adaboost.py]
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('adaboostclassifier', AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=None,
+            max_features=None, max_lea...state=None, splitter='best'),
+          learning_rate=0.5, n_estimators=50, random_state=20160308))])
+               mean       std
+f1         0.217667  0.277029
+precision  0.207333  0.287512
+recall        0.255  0.320117
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.07, score_func=<function f_classif at 0x0000000019A666D8>)), ('adaboostclassifier', AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifie...state=None, splitter='best'),
+          learning_rate=0.5, n_estimators=50, random_state=20160308))])
+               mean       std
+f1         0.279071  0.292543
+precision  0.291833  0.341301
+recall        0.305  0.323226
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=10, whiten=True)), ('adaboostclassifier', AdaBoostClassifier(algorithm='SAMME',
+          base_estimator=DecisionTreeClassifier(class_weight=None, criterion='gini',...state=None, splitter='best'),
+          learning_rate=0.5, n_estimators=50, random_state=20160308))])
+               mean       std
+f1         0.207857  0.280477
+precision  0.208667  0.304453
+recall         0.23  0.311609
+
+
+[14_gradient_boosting.py]
+
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('gradientboostingclassifier', GradientBoostingClassifier(init=None, learning_rate=0.05, loss='deviance',
+              max_depth=None, max_features='sqrt', max_leaf_nodes=None,
+              min_samp...  presort='auto', random_state=20160310, subsample=1.0,
+              verbose=0, warm_start=False))])
+               mean       std
+f1         0.319667  0.328569
+precision  0.441667  0.468671
+recall         0.26  0.269072
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('selectfpr', SelectFpr(alpha=0.05, score_func=<function f_classif at 0x0000000019A666D8>)), ('gradientboostingclassifier', GradientBoostingClassifier(init=None, learning_rate=0.05, loss='deviance',
+ ...  presort='auto', random_state=20160310, subsample=1.0,
+              verbose=0, warm_start=False))])
+               mean       std
+f1         0.290333  0.329285
+precision     0.395  0.460468
+recall         0.24  0.278209
+Pipeline(steps=[('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), ('pca', PCA(copy=True, n_components=16, whiten=True)), ('gradientboostingclassifier', GradientBoostingClassifier(init=None, learning_rate=0.1, loss='deviance',
+              max_depth=None, max_featur...  presort='auto', random_state=20160310, subsample=0.8,
+              verbose=0, warm_start=False))])
+            mean       std
+f1         0.105  0.234112
+precision  0.145  0.333879
+recall     0.085  0.187816

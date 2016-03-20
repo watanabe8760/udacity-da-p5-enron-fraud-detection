@@ -1,0 +1,128 @@
+Pipeline(steps=[
+('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), 
+('pca', PCA(copy=True, n_components=12, whiten=True)), 
+('logisticregression', LogisticRegression(C=1, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=0.6, max_iter=100,
+          multi_class='ovr', n_jobs=-1, penalty='l2', random_state=None,
+          solver='liblinear', tol=0.0001, verbose=0, warm_start=False))])
+[Pre]
+                   mean       std
+    f1         0.471986  0.194978
+    precision  0.350905  0.175093
+    recall         0.79  0.293087
+
+[Final]
+     Accuracy: 0.76413
+    Precision: 0.33878
+       Recall: 0.80800
+           F1: 0.47740
+           F2: 0.63273
+    Total predictions: 15000
+       True positives: 1616
+      False positives: 3154
+      False negatives:  384
+       True negatives: 9846
+
+
+Pipeline(steps=[
+('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), 
+('svc', SVC(C=1, cache_size=200, class_weight='balanced', coef0=0.0,
+  decision_function_shape='ovo', degree=3, gamma='auto', kernel='linear',
+  max_iter=-1, probability=False, random_state=20160308, shrinking=False,
+  tol=0.001, verbose=False))])
+[Pre]
+                   mean       std
+    f1         0.495238  0.277868
+    precision  0.460833   0.30489
+    recall         0.61  0.350571
+
+[Final]
+     Accuracy: 0.84753
+    Precision: 0.44938
+       Recall: 0.63700
+           F1: 0.52699
+           F2: 0.58791
+    Total predictions: 15000
+       True positives: 1274
+      False positives: 1561
+      False negatives:  726
+       True negatives: 11439
+
+Pipeline(steps=[
+('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), 
+('pca', PCA(copy=True, n_components=18, whiten=True)), 
+('svc', SVC(C=1, cache_size=200, class_weight='balanced', coef0=0.0,
+  decision_function_shape='ovo', degree=3, gamma='auto', kernel='linear',
+  max_iter=-1, probability=False, random_state=20160308, shrinking=False,
+  tol=0.001, verbose=False))])
+[Pre]
+                   mean       std
+    f1         0.509762   0.21258
+    precision  0.460917  0.257328
+    recall        0.675  0.311247
+
+[Final]
+     Accuracy: 0.83393
+    Precision: 0.42397
+       Recall: 0.68450
+           F1: 0.52362
+           F2: 0.60958
+    Total predictions: 15000
+       True positives: 1369
+      False positives: 1860
+      False negatives:  631
+       True negatives: 11140
+
+
+Pipeline(steps=[
+('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), 
+('extratreesclassifier', ExtraTreesClassifier(bootstrap=False, class_weight='balanced',
+           criterion='gini', max_depth=None, max_features='sqrt',
+           max_leaf_nodes=None, min_samples_leaf=3, min_samples_split=2,
+           min_weight_fraction_leaf=0.0, n_estimators=30, n_jobs=-1,
+           oob_score=False, random_state=20160308, verbose=0,
+           warm_start=False))])
+[Pre]
+                   mean       std
+    f1         0.514079   0.26045
+    precision  0.503095   0.30633
+    recall        0.605  0.333879
+
+[Final]
+     Accuracy: 0.85767
+    Precision: 0.47385
+       Recall: 0.61150
+           F1: 0.53394
+           F2: 0.57792
+    Total predictions: 15000
+       True positives: 1223
+      False positives: 1358
+      False negatives:  777
+       True negatives: 11642
+
+
+Pipeline(steps=[
+('imputer', Imputer(axis=0, copy=True, missing_values='NaN', strategy='median', verbose=0)), 
+('selectfpr', SelectFpr(alpha=0.05, score_func=<function f_classif at 0x0000000019A666D8>)), 
+('extratreesclassifier', ExtraTreesClassifier(bootstrap=False, class_weight='balanced',
+           criterio...obs=-1,
+           oob_score=False, random_state=20160308, verbose=0,
+           warm_start=False))])
+[Pre]
+                   mean       std
+    f1         0.502714  0.244193
+    precision    0.4535  0.268114
+    recall        0.635  0.315079
+
+[Final]
+     Accuracy: 0.83260
+    Precision: 0.41582
+       Recall: 0.63100
+           F1: 0.50129
+           F2: 0.57182
+    Total predictions: 15000
+       True positives: 1262
+      False positives: 1773
+      False negatives:  738
+       True negatives: 11227
+
