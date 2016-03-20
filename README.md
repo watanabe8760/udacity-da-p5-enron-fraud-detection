@@ -1,5 +1,21 @@
 # Enron Fraud Detection
 
+#### Table of Contents
+
+1. Abstract
+2. Envrionment
+3. Files
+4. Data  
+        4.1. Features  
+        4.2. Data Source  
+        4.3. Preprosess  
+5. Modeling
+6. Feature Importance
+7. Summary of Result
+8. Q&A
+9. References
+
+
 ## 1. Abstract
 
 The purpose of this project is to figure out how well machine learning algorithms can indentify Person Of Interest (POI) who were indicted, settled without admitting guilt or testified in exchange for immunity in [Enron scandal](https://en.wikipedia.org/wiki/Enron_scandal).
@@ -207,7 +223,7 @@ Note, since I used cross validation in the actual training process, the score an
 A good news is that two of engineered features (*_ratio) are working very well as expected.
 
 
-## 6. Summary of Result
+## 7. Summary of Result
 
 The following table shows __F1 score__ of the best model in each pattern. 
 
@@ -235,9 +251,9 @@ These results were taken by `evaluate` in 04_model_preparation.py, which does th
 2. For PCA, the number of components used for modeling was grid searched. The number of components varies from 10 to  18 depending on the model.
 
 
-## 7. Q&A
+## 8. Q&A
 
-### Summarize the goal of this project and how machine learning is useful in trying to accomplish it. As part of your answer, give some background on the dataset and how it can be used to answer the project question. Were there any outliers in the data when you got it, and how did you handle those?
+#### Summarize the goal of this project and how machine learning is useful in trying to accomplish it. As part of your answer, give some background on the dataset and how it can be used to answer the project question. Were there any outliers in the data when you got it, and how did you handle those?
 
 The goal of this project is to apply as many classification machine learning algorithms as possible and to see which outperforms. The data used is small (144 rows / 22 columns) though, it's still a high dimentional space so it's really hard for human beings to figure out the decision boundary of POI accurately by any heuristic approch. Machine learning can explore this high dimentional space efficiently based on their own algorithms and this might be able to develop a model which specifies the decision boundary. Since I do not know which algorithm performs better, it is encouraged to try as many algorithms as possible.
 
@@ -252,19 +268,19 @@ As explained in the previous section (4. Data), the original data has 146 rows a
 * Original (21) + Engineered (3) - Email Adress (1) = 23 (1 label + 22 features)
 
 
-### What features did you end up using in your POI identifier, and what selection process did you use to pick them? Did you have to do any scaling? Why or why not? Explain what feature you tried to make, and the rationale behind it. In your feature selection step, if you used an algorithm like a decision tree, please also give the feature importances of the features that you use, and if you used an automated feature selection function like SelectKBest, please report the feature scores and reasons for your choice of parameter values.
+#### What features did you end up using in your POI identifier, and what selection process did you use to pick them? Did you have to do any scaling? Why or why not? Explain what feature you tried to make, and the rationale behind it. In your feature selection step, if you used an algorithm like a decision tree, please also give the feature importances of the features that you use, and if you used an automated feature selection function like SelectKBest, please report the feature scores and reasons for your choice of parameter values.
 
 As mentioned, only email address is removed manually and all the other numerical features are brought to next stage and log scaling was applied to the original features to mitigate skewness. To retain as many features as possible makes sense since automated feature selections are performed as a part of pipeline in the training phase.
 
 The final model I chose is Extra Trees classifier and no feature selection was applied aside from imputation. The reason why the best model does not require any future selection seems to be that the classifier utilizes the power of randamization which can deal bias-variance problems well.
 
 
-### What algorithm did you end up using? What other one(s) did you try? How did model performance differ between algorithms?
+#### What algorithm did you end up using? What other one(s) did you try? How did model performance differ between algorithms?
 
-For the brief summary, please refer to the section 5 "Summary of Result".
+For the brief summary, please refer to the section 7 "Summary of Result".
 
 
-### What does it mean to tune the parameters of an algorithm, and what can happen if you don’t do this well?  How did you tune the parameters of your particular algorithm?
+#### What does it mean to tune the parameters of an algorithm, and what can happen if you don’t do this well?  How did you tune the parameters of your particular algorithm?
 
 Parameter tuning is a way to optimize the efficiency of training process. If the best parameters are chosen, the training process is faster (not always) and the model to be developed has better predictive power. 
 
@@ -277,14 +293,14 @@ For my final model Extra Trees classifier, the parameters are mainly for the fol
 I chose the range of parameters based on the default values and some trials. For the parameters of decision tree specification, I intended to control it by number of data points in a leaf or split because I felt that it's not a good idea to control it by depth of tree or number of leaves for a small data set.
 
 
-### What is validation, and what’s a classic mistake you can make if you do it wrong? How did you validate your analysis?
+#### What is validation, and what’s a classic mistake you can make if you do it wrong? How did you validate your analysis?
 
 Validation is a way to check the reliability of model by keeping a validation data set out from a training data set. If an entire data set is used to train model, the model might overfit to the training data set. If overfitting is the case, the predictive power of model is weak, which means that the model failed to generize the phenomenon well.
 
 In my analysis, ten holds stratified cross validation with randomization was performed for grid search and one hundred holds stratified cross validation with randomization was performed for evaluation . This method can randomly create holds with balancing the percentage of label in the hold out. Since the data set is small and the ratio of 1 (POI) and 0 (Non-POI) is unbalanced, it is important to keep the ratio in each hold.
 
 
-### Give at least 2 evaluation metrics and your average performance for each of them. Explain an interpretation of your metrics that says something human-understandable about your algorithm’s performance.
+#### Give at least 2 evaluation metrics and your average performance for each of them. Explain an interpretation of your metrics that says something human-understandable about your algorithm’s performance.
 
 I'd like to present precision and recall from the result of tester.py (result_final.txt). Precision and recall are common metrics for classification problems. They can give us false positive rate and false negative rate respectively. These metrics are useful when false positive rate or false negative rate more matters than the other depending on the context of analysis.
 
@@ -319,7 +335,7 @@ For example, let me compare two results in result_final.txt.
 In terms of F1 score which is the weighted average of precision and recall, Extra Trees (ET) outperforms Logistic Regression (LR). But if you only look at recall, LR is doing much better than ET, which means that LR is better at detecting POI while it contains more false positive. In other words, LR can detect more POI than ET by sacrificing its precision. For some problems, it makes sense to weigh precision or recall for a sake of analysis though, I chose F1 score to decide the final model because I thought that both are equally important for this problem.
 
 
-## 8. References
+## 9. References
 
 * Enron scandal, Wikipedia - https://en.wikipedia.org/wiki/Enron_scandal
 * A look at those involved in the Enron scandal, USA Today - http://usatoday30.usatoday.com/money/industries/energy/2005-12-28-enron-participants_x.htm
