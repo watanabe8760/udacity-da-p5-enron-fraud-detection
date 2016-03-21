@@ -7,7 +7,10 @@ from pandas import DataFrame
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import Imputer
 from sklearn.feature_selection import SelectFpr, f_classif
-from sklearn.ensemble import AdaBoostClassifier
+from sklearn.decomposition import PCA
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.ensemble import ExtraTreesClassifier
 
 from tester import dump_classifier_and_data
 
@@ -52,8 +55,6 @@ for f in F_FINANCE:
 # Task 1: Select what features you'll use.
 # features_list is a list of strings, each of which is a feature name.
 # The first feature must be "poi".
-features_list = ['poi'] + F_ALL_NEW
-
 # Task 2: Remove outliers
 # Task 3: Create new feature(s)
 """
@@ -154,4 +155,4 @@ pipe = make_pipeline(
 #                               warm_start=False))
 
 # Task 6: Dump your classifier, dataset, and features_list
-dump_classifier_and_data(pipe, df.to_dict(orient='index'), features_list)
+dump_classifier_and_data(pipe, df.to_dict(orient='index'), ['poi'] + F_ALL_NEW)

@@ -51,6 +51,7 @@ seaborn                   0.6.0               np110py27_0    defaults
 │   13_adaboost.py              
 │   14_gradient_boosting.py     
 │   15_feature_review.py        
+│   feature_format.py           : Formatting utils (used by tester.py)
 │   poi_id.py                   : Creates and saves final model
 │   README.md                   
 │   tester.py                   : Tests final model
@@ -218,7 +219,7 @@ from_messages                   0.006  0.9362
 deferral_payments               0.000  0.9884
 ```
 
-Note, since I used cross validation in the actual training process, the score and p-value in every training set would be different from the above depending on which part of data is held out as validation set. So the table above just provides the general idea.
+Note, since I used cross validation in the actual training process, the score and p-value in every training set would be different from the above depending on which part of data is held out as validation set. So the table above just provides a general idea.
 
 A good news is that two of engineered features (*_ratio) are working very well as expected.
 
@@ -267,6 +268,10 @@ As explained in the previous section (4. Data), the original data has 146 rows a
 
 * Original (21) + Engineered (3) - Email Adress (1) = 23 (1 label + 22 features)
 
+[Label]
+
+* POI (18) + Non-POI (126) = 144
+
 
 #### What features did you end up using in your POI identifier, and what selection process did you use to pick them? Did you have to do any scaling? Why or why not? Explain what feature you tried to make, and the rationale behind it. In your feature selection step, if you used an algorithm like a decision tree, please also give the feature importances of the features that you use, and if you used an automated feature selection function like SelectKBest, please report the feature scores and reasons for your choice of parameter values.
 
@@ -282,7 +287,7 @@ For the brief summary, please refer to the section 7 "Summary of Result".
 
 #### What does it mean to tune the parameters of an algorithm, and what can happen if you don’t do this well?  How did you tune the parameters of your particular algorithm?
 
-Parameter tuning is a way to optimize the efficiency of training process. If the best parameters are chosen, the training process is faster (not always) and the model to be developed has better predictive power. 
+Parameter tuning is a way to specify a specification of machine learning algorithms to maximize its performance. Optimal parameters depend on the data which machine learning algorithms are applied to so that a number of trials is necessary to find them. (Usually it's done by cross validation.) The best parameters means that the predictive power of model is maximized given a machine learning algorithm.
 
 For my final model Extra Trees classifier, the parameters are mainly for the following.
 
@@ -302,7 +307,15 @@ In my analysis, ten holds stratified cross validation with randomization was per
 
 #### Give at least 2 evaluation metrics and your average performance for each of them. Explain an interpretation of your metrics that says something human-understandable about your algorithm’s performance.
 
-I'd like to present precision and recall from the result of tester.py (result_final.txt). Precision and recall are common metrics for classification problems. They can give us false positive rate and false negative rate respectively. These metrics are useful when false positive rate or false negative rate more matters than the other depending on the context of analysis.
+I'd like to present precision and recall from the result of tester.py (result_final.txt). They both express a certain type of accuracies from different aspects for classification problems. Precision is a way to look at accuracy from a number of predictions. In the context of this problem, positive means POI so it is described as:
+
+* The ratio of correctly classified POI given the total number of POI predictions
+
+On the other hand, recall is a way to look at accuracy from a number of the actual label. 
+
+* The ratio of correctly classified POI given the total number of POI labels in the data set
+
+In other words precision more matters when you do not want to include false positive (Non-POI classified as POI) as much as possible and recall more matters when you do not want to miss the actual positive (POI) as much as possible.
 
 For example, let me compare two results in result_final.txt.
 
@@ -332,7 +345,7 @@ For example, let me compare two results in result_final.txt.
        True negatives: 11642
 ```
 
-In terms of F1 score which is the weighted average of precision and recall, Extra Trees (ET) outperforms Logistic Regression (LR). But if you only look at recall, LR is doing much better than ET, which means that LR is better at detecting POI while it contains more false positive. In other words, LR can detect more POI than ET by sacrificing its precision. For some problems, it makes sense to weigh precision or recall for a sake of analysis though, I chose F1 score to decide the final model because I thought that both are equally important for this problem.
+In terms of F1 score which is the weighted average of precision and recall, Extra Trees (ET) outperforms Logistic Regression (LR). But if you only look at recall, LR is doing much better than ET, which means that LR detects more actual POIs while it contains more false positive. In other words, LR can detect more actual POIs than ET by sacrificing its precision. For some problems, it makes sense to weigh precision or recall for a sake of analysis though, I chose F1 score to decide the final model because I thought that both are equally important for this problem.
 
 
 ## 9. References
