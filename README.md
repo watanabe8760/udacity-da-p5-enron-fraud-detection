@@ -302,7 +302,7 @@ I chose the range of parameters based on the default values and some trials. For
 
 Validation is a way to check the reliability of model by keeping a validation data set out from a training data set. If an entire data set is used to train model, the model might overfit to the training data set. If overfitting is the case, the predictive power of model is weak, which means that the model failed to generize the phenomenon well.
 
-In my analysis, ten holds stratified cross validation with randomization was performed for grid search and one hundred holds stratified cross validation with randomization was performed for evaluation . This method can randomly create holds with balancing the percentage of label in the hold out. Since the data set is small and the ratio of 1 (POI) and 0 (Non-POI) is unbalanced, it is important to keep the ratio in each hold.
+In my analysis, ten folds stratified cross validation with randomization was performed for grid search and one hundred folds stratified cross validation with randomization was performed for evaluation . This method can randomly create folds with balancing the percentage of label in the holdout. Since the data set is small and the ratio of 1 (POI) and 0 (Non-POI) is unbalanced, it is important to keep the ratio in each holdout.
 
 
 #### Give at least 2 evaluation metrics and your average performance for each of them. Explain an interpretation of your metrics that says something human-understandable about your algorithm’s performance.
